@@ -27,7 +27,7 @@ export function Hero() {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-3 mt-4">
             <a
-              href="#/assignments"
+              href="/assignments"
               className="btn btn-primary text-xs sm:text-sm px-4 py-2.5 w-full sm:w-auto text-center"
             >
               Assignments
@@ -41,13 +41,13 @@ export function Hero() {
               Join WhatsApp
             </a>
             <a
-              href="#/chat"
+              href="/chat"
               className="btn text-xs sm:text-sm px-4 py-2.5 w-full sm:w-auto text-center"
             >
               Chat Room
             </a>
             <a
-              href="#/pyqs"
+              href="/pyqs"
               className="btn text-xs sm:text-sm px-4 py-2.5 w-full sm:w-auto text-center"
             >
               PYQs

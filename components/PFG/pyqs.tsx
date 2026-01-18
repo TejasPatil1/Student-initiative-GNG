@@ -2,6 +2,7 @@
 
 import useSWR from "swr"
 import { useMemo, useState } from "react"
+import { getSupabaseClient } from "@/lib/supabase"
 
 type PYQ = {
   name: string
@@ -11,26 +12,84 @@ type PYQ = {
   link: string
 }
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json())
+async function downloadPDF(url: string, filename: string) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Download failed");
+
+    const blob = await res.blob();
+    const blobUrl = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = `${filename}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(blobUrl);
+  } catch (err) {
+    console.error(err);
+    alert("Failed to download PDF");
+  }
+}
+
+/* 🔁 Supabase fetcher */
+const fetcher = async (): Promise<PYQ[]> => {
+  const supabase = getSupabaseClient()
+  if (!supabase) return []
+
+  const { data, error } = await supabase
+    .from("pdfs")
+    .select("*")
+    .eq("status", "approved")
+    .eq("doc_type", "PYQ")
+    .order("created_at", { ascending: false })
+
+  if (error) {
+    console.error("Supabase PYQ fetch error:", error)
+    return []
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+
+  return (data || []).map((d) => ({
+    name: d.title,
+    subject: d.subject,
+    year: d.semester, // you are using "year" in UI, DB has "semester"
+    type: d.doc_type,
+    link: `${baseUrl}/storage/v1/object/public/pdfs/${d.file_path}`,
+  }))
+}
 
 export function PYQsPage() {
-  const { data } = useSWR<PYQ[]>("/data/pyqs.json", fetcher)
+  const { data } = useSWR("supabase-pyqs", fetcher)
+
   const [values, setValues] = useState<Record<string, string>>({})
   const [searchTerm, setSearchTerm] = useState("")
   const [sortBy, setSortBy] = useState("newest")
 
-  const subjects = useMemo(() => Array.from(new Set((data ?? []).map((d) => d.subject))).sort(), [data])
+  const subjects = useMemo(
+    () => Array.from(new Set((data ?? []).map((d) => d.subject))).sort(),
+    [data]
+  )
+
   const years = useMemo(
     () =>
       Array.from(new Set((data ?? []).map((d) => d.year)))
         .sort()
         .reverse(),
-    [data],
+    [data]
   )
-  const types = useMemo(() => Array.from(new Set((data ?? []).map((d) => d.type))).sort(), [data])
+
+  const types = useMemo(
+    () => Array.from(new Set((data ?? []).map((d) => d.type))).sort(),
+    [data]
+  )
 
   const filtered = useMemo(() => {
     if (!data) return []
+
     const result = data.filter((d) => {
       if (values.subject && d.subject !== values.subject) return false
       if (values.year && d.year !== values.year) return false
@@ -41,14 +100,15 @@ export function PYQsPage() {
 
     if (sortBy === "newest") {
       result.sort((a, b) => b.year.localeCompare(a.year))
-    } else if (sortBy === "oldest") {
+    } else {
       result.sort((a, b) => a.year.localeCompare(b.year))
     }
 
     return result
   }, [data, values, searchTerm, sortBy])
 
-  const set = (k: string, v: string) => setValues((s) => ({ ...s, [k]: v }))
+  const set = (k: string, v: string) =>
+    setValues((s) => ({ ...s, [k]: v }))
 
   const resetFilters = () => {
     setValues({})
@@ -248,22 +308,15 @@ export function PYQsPage() {
                   </svg>
                   PDF
                 </div>
-                <a
-                  href={q.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs sm:text-sm font-medium hover:bg-primary/90 transition-colors"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                  View
-                </a>
+               <button
+  onClick={() => downloadPDF(q.link, q.name)}
+  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs sm:text-sm font-medium hover:bg-primary/90 transition-colors"
+>
+  Download PDF
+</button>
+
+
+
               </div>
             </div>
           ))
