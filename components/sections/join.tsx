@@ -14,7 +14,7 @@ export function JoinPFGSection() {
           )}
         >
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white text-center">
-  Join PFG Today
+  Login Soon
 </h2>
 
           <p className="mt-4 font-sans text-gray-200 leading-relaxed max-w-4xl mx-auto text-lg md:text-xl">

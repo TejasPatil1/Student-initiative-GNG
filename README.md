@@ -52,4 +52,8 @@ This project uses the following core technologies and libraries:
 1. Clone the repository:
 
 ```bash
+
+
 git clone https://github.com/yourusername/programming-for-genz.git
+- bg_video.mpa wali file add kiya hai
+

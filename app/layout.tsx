@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     "Programming for Genz (PFG) — a student-driven platform for courses, assignments, PYQs, community learning, and tech collaboration.",
   keywords: [
     "Programming for Genz",
+    "Programming for genz",
+    "programming for genz",
+    "programming for",
     "PFG",
     "Student Initiative",
     "GNG",
