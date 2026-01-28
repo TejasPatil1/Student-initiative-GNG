@@ -3,6 +3,7 @@
 import useSWR from "swr"
 import { useMemo, useState } from "react"
 import { getSupabaseClient } from "@/lib/supabase"
+import Link from "next/link"
 
 type PYQ = {
   name: string
@@ -308,20 +309,34 @@ export function PYQsPage() {
                   </svg>
                   PDF
                 </div>
-               <button
-  onClick={() => downloadPDF(q.link, q.name)}
-  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs sm:text-sm font-medium hover:bg-primary/90 transition-colors"
->
-  Download PDF
-</button>
-
-
-
+                <button
+                  onClick={() => downloadPDF(q.link, q.name)}
+                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs sm:text-sm font-medium hover:bg-primary/90 transition-colors"
+                >
+                  Download PDF
+                </button>
               </div>
             </div>
           ))
         )}
       </div>
+
+      {/* ---------- NEW SUBMIT SECTION ---------- */}
+      <div className="flex flex-col items-center justify-center py-8 border-t border-border/50 mt-8">
+        <p className="text-muted-foreground text-sm mb-4">
+          Have a question paper to share with the community?
+        </p>
+       <Link
+  href="/Submit"
+  className="group flex items-center gap-2 px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg hover:shadow-primary/25 hover:bg-primary/90 hover:scale-105 transition-all duration-300"
+>
+  <svg className="w-5 h-5 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+  </svg>
+  Submit PYQ
+</Link>
+      </div>
+
     </section>
   )
 }
