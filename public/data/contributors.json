@@ -1,7 +1,26 @@
 [
-  { "name": "Tejas Patil", "role": "Front-end dev", "link": "https://github.com/TejasPatil1" },
-  { "name": "Sushant", "role": "Resource Curator" },
-  { "name": "Darshan sonar", "role": "Admin panel Dev" },
-  
-  { "name": "Dipak saindane", "role": "UI tweaks" }
+  {
+    "name": "Tejas",
+    "role": "Founder & AI Engineer",
+    "avatar": "https://github.com/tejas.png",
+    "socials": {
+      "github": "https://github.com/TejasPatil1",
+      "youtube": "https://youtube.com/@teja",
+      "discord": "https://discord.gg/yourserver",
+      "instagram": "https://instagram.com/_i.teja__",
+      "linkedin": "https://www.linkedin.com/in/tejas-patil-a6765935a"
+    }
+  },
+  {
+    "name": "New Member Name",
+    "role": "Developer",
+    "avatar": "", 
+    "socials": {
+      "github": "https://github.com/TejasPatil1",
+      "youtube": "",
+      "discord": "",
+      "instagram": "https://instagram.com/_i.teja__",
+      "linkedin": "https://www.linkedin.com/in/tejas-patil-a6765935a"
+    }
+  }
 ]
