@@ -36,21 +36,23 @@ const fetchPending = async () => {
   return data || [];
 };
 
-async function approvePdf(id: string) {
-  const supabase = getSupabaseClient();
-  if (!supabase) return;
 
-  await supabase.from("pdfs").update({ status: "approved" }).eq("id", id);
+
+
+async function approvePdf(id: string) {
+  await fetch("/api/admin/pdf/approve", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id }),
+  });
 }
 
 async function rejectPdf(id: string, filePath: string) {
-  const supabase = getSupabaseClient();
-  if (!supabase) return;
-
-  // delete file
-  await supabase.storage.from("pdfs").remove([filePath]);
-  // delete row
-  await supabase.from("pdfs").delete().eq("id", id);
+  await fetch("/api/admin/pdf/reject", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id, filePath }),
+  });
 }
 
 /* ---------------- ADMIN DASHBOARD ---------------- */

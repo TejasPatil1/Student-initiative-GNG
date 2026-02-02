@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 // Pages
 import { PYQsPage } from "@/components/PFG/pyqs";
 import { AssignmentsPage } from "@/components/PFG/assignments";
-import { CoursesPage } from "@/components/PFG/courses";
+import AnnouncementsPage from "@/components/PFG/Announcements";
 import { ChatRoom } from "@/components/PFG/chat-room";
 import { WhatsAppPage } from "@/components/PFG/whatsapp";
 import { ContributorsPage } from "@/components/PFG/contributors";
@@ -55,7 +55,7 @@ export function VideoBackground() {
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const navLinks = ["/", "/pyqs", "/assignments", "/courses", "/chat", "/whatsapp", "/contributors"];
+  const navLinks = ["/", "/pyqs", "/assignments", "/Announcements", "/chat", "/whatsapp", "/contributors"];
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -137,7 +137,7 @@ export default function PageClient() {
         {pathname === "/" && <HomePage />}
         {pathname === "/pyqs" && <PYQsPage />}
         {pathname === "/assignments" && <AssignmentsPage />}
-        {pathname === "/courses" && <CoursesPage />}
+        {pathname === "/Announcements" && <AnnouncementsPage />}
         {pathname === "/chat" && <ChatRoom />}
         {pathname === "/whatsapp" && <WhatsAppPage />}
         {pathname === "/contributors" && <ContributorsPage />}
