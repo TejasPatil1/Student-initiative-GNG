@@ -84,7 +84,7 @@ export function Hero() {
           </a>
 
           <a
-            href="/whatsapp"
+            href="https://chat.whatsapp.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center justify-center h-14 sm:h-12 px-8 rounded-xl border border-[#25D366]/30 bg-[#25D366]/10 text-[#25D366] font-medium text-base backdrop-blur-sm hover:bg-[#25D366]/20 hover:border-[#25D366]/60 hover:scale-105 hover:shadow-[0_0_20px_rgba(37,211,102,0.2)] transition-all duration-300"
