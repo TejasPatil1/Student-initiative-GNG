@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Full Stack Development",
+    "link": "https://roadmap.sh/full-stack",
+    "tags": ["HTML", "CSS", "JS", "React", "Node"]
+  },
+  {
+    "name": "Python Development",
+    "link": "https://www.python.org/about/gettingstarted/",
+    "tags": ["Python", "Basics"]
+  },
+  {
+    "name": "AI & ML Basics",
+    "link": "https://www.coursera.org/learn/machine-learning",
+    "tags": ["AI", "ML"]
+  },
+  {
+    "name": "Data Science Roadmap",
+    "link": "https://roadmap.sh/ai-data-scientist",
+    "tags": ["Data", "ML"]
+  }
+]

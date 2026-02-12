@@ -1,0 +1,27 @@
+[
+  {
+    "name": "DSA Final Paper",
+    "subject": "Data Structures",
+    "year": "2023",
+    "type": "Finals",
+    "link": "https://drive.google.com/uc?export=view&id=1AAAABBBCCCDDDEE"
+  },{  "name": "BE-midsem",
+    "subject": "BE",
+    "year": "2025",
+    "type": "Mid Sem",
+    "link": "https://drive.google.com/uc?export=view&id=1AAAABBBCCCDDDEE"},
+  {
+    "name": "OS Mid Sem",
+    "subject": "Operating Systems",
+    "year": "2022",
+    "type": "Mid Sem",
+    "link": "https://drive.google.com/uc?export=view&id=1EEEFFFGGGHHHIII"
+  },
+  {
+    "name": "Maths-II Finals",
+    "subject": "Mathematics",
+    "year": "2021",
+    "type": "Finals",
+    "link": "https://drive.google.com/uc?export=view&id=1JJJKKKLLLMMMNNN"
+  }
+]
