@@ -14,7 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { getSupabaseClient } from "@/lib/supabase";
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const SUPABASE_URL = process.env.Supabase_URL!;
 
 /* ---------------- SUPABASE HELPERS ---------------- */
 

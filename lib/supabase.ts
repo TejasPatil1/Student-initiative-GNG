@@ -5,11 +5,11 @@ export function getSupabaseClient() {
 
   console.log(
     "SUPABASE URL:",
-    process.env.NEXT_PUBLIC_SUPABASE_URL
+    process.env.Supabase_URL
   );
 
   return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL as string,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
+    process.env.Supabase_URL as string,
+    process.env.Supabase_anon_key as string
   );
 }

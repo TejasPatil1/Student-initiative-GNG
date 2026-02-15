@@ -62,7 +62,7 @@ const fetcher = async (): Promise<PYQ[]> => {
     return []
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  const baseUrl = process.env.Supabase_URL!
 
   return (data || []).map((d) => ({
     id: d.id,
