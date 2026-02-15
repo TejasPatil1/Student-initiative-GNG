@@ -109,9 +109,9 @@ export default function AnnouncementsPage() {
 
   return (
     <div className="p-6 space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <h1 className="text-2xl font-bold">Announcements</h1>
-        <Button onClick={() => setIsModalOpen(true)}>
+        <Button onClick={() => setIsModalOpen(true)} className="w-full sm:w-auto">
           + Upload Announcement
         </Button>
       </div>
@@ -160,7 +160,7 @@ export default function AnnouncementsPage() {
             <DialogTitle>Upload Announcement</DialogTitle>
           </DialogHeader>
 
-          <form onSubmit={handleCreate} className="space-y-4">
+          <form onSubmit={handleCreate} className="space-y-3 sm:space-y-4">
             <Input
               placeholder="Title"
               value={formData.title}
@@ -181,36 +181,15 @@ export default function AnnouncementsPage() {
 
             {/* Professional File Upload */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium">
-                Upload PDF or Image
+              <label htmlFor="fileUpload" className="cursor-pointer inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all active:scale-95 w-full sm:w-auto justify-center sm:justify-start">
+                + Choose File
               </label>
 
-              <div className="flex items-center gap-3">
-                <input
-                  type="file"
-                  id="fileUpload"
-                  accept=".pdf,image/*"
-                  onChange={(e) => {
-                    if (e.target.files && e.target.files[0]) {
-                      setFile(e.target.files[0])
-                    }
-                  }}
-                  className="hidden"
-                />
-
-                <label
-                  htmlFor="fileUpload"
-                  className="cursor-pointer inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all active:scale-95"
-                >
-                  + Choose File
-                </label>
-
-                {file && (
-                  <span className="text-sm text-gray-600 truncate max-w-[200px]">
-                    {file.name}
-                  </span>
-                )}
-              </div>
+              {file && (
+                <span className="text-sm text-gray-600 truncate max-w-[120px] sm:max-w-[200px]">
+                  {file.name}
+                </span>
+              )}
             </div>
 
             <Button type="submit" disabled={isSubmitting} className="w-full">
