@@ -184,6 +184,14 @@ export default function AnnouncementsPage() {
               <label htmlFor="fileUpload" className="cursor-pointer inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all active:scale-95 w-full sm:w-auto justify-center sm:justify-start">
                 + Choose File
               </label>
+              
+              <input
+                id="fileUpload"
+                type="file"
+                onChange={(e) => setFile(e.target.files?.[0] || null)}
+                accept=".pdf,.jpg,.jpeg,.png,.webp"
+                className="hidden"
+              />
 
               {file && (
                 <span className="text-sm text-gray-600 truncate max-w-[120px] sm:max-w-[200px]">
