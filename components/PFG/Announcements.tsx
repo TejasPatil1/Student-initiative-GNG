@@ -69,7 +69,7 @@ export default function AnnouncementsPage() {
       const fileName = `${Date.now()}-${file.name}`
 
       const { error: uploadError } = await supabase.storage
-        .from("announcements-images")
+        .from("announcements")
         .upload(fileName, file)
 
       if (uploadError) {
@@ -80,7 +80,7 @@ export default function AnnouncementsPage() {
       }
 
       const { data } = supabase.storage
-        .from("announcements-images")
+        .from("announcements")
         .getPublicUrl(fileName)
 
       file_url = data.publicUrl
