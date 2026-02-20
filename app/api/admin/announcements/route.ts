@@ -1,10 +1,10 @@
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { supabaseAnnouncementsAdmin } from "@/lib/supabaseAnnouncementsAdmin";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const body = await req.json();
 
-  const { error } = await supabaseAdmin
+  const { error } = await supabaseAnnouncementsAdmin
     .from("announcements")
     .insert(body);
 

@@ -1,12 +1,12 @@
 
 
-import { getSupabaseClient } from "./supabase";
+import { getAnnouncementsSupabaseClient } from "./supabaseAnnouncements";
 
 const BASE_URL =
-  `${process.env.Supabase_URL}/storage/v1/object/public/announcements/`;
+  `${process.env.NEXT_PUBLIC_SUPABASE_ANNOUNCEMENTS_URL}/storage/v1/object/public/announcements/`;
 
 export async function getCourseAnnouncements() {
-  const supabase = getSupabaseClient();
+  const supabase = getAnnouncementsSupabaseClient();
   if (!supabase) return [];
 
   const { data, error } = await supabase

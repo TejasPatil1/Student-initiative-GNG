@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import useSWR, { mutate } from "swr"
-import { getSupabaseClient } from "@/lib/supabase"
+import { getAnnouncementsSupabaseClient } from "@/lib/supabaseAnnouncements"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -18,7 +18,7 @@ type Announcement = {
 }
 
 const fetcher = async (): Promise<Announcement[]> => {
-  const supabase = getSupabaseClient()
+  const supabase = getAnnouncementsSupabaseClient()
   if (!supabase) return []
 
   const { data } = await supabase
@@ -46,7 +46,7 @@ export default function AnnouncementsPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    const supabase = getSupabaseClient()
+    const supabase = getAnnouncementsSupabaseClient()
     if (!supabase) return
 
     let file_url: string | null = null
