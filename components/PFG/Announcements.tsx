@@ -47,7 +47,11 @@ export default function AnnouncementsPage() {
     setIsSubmitting(true)
 
     const supabase = getAnnouncementsSupabaseClient()
-    if (!supabase) return
+    if (!supabase) {
+      alert("Supabase client not initialized. Please check your environment variables.")
+      setIsSubmitting(false)
+      return
+    }
 
     let file_url: string | null = null
 
@@ -69,7 +73,7 @@ export default function AnnouncementsPage() {
       const fileName = `${Date.now()}-${file.name}`
 
       const { error: uploadError } = await supabase.storage
-        .from("announcements")
+        .from("announcement-image")
         .upload(fileName, file)
 
       if (uploadError) {
@@ -80,7 +84,7 @@ export default function AnnouncementsPage() {
       }
 
       const { data } = supabase.storage
-        .from("announcements")
+        .from("announcement-image")
         .getPublicUrl(fileName)
 
       file_url = data.publicUrl

@@ -3,7 +3,7 @@
 import { getAnnouncementsSupabaseClient } from "./supabaseAnnouncements";
 
 const BASE_URL =
-  `${process.env.NEXT_PUBLIC_SUPABASE_ANNOUNCEMENTS_URL}/storage/v1/object/public/announcements/`;
+  `${process.env.NEXT_PUBLIC_SUPABASE_ANNOUNCEMENTS_URL}/storage/v1/object/public/announcement-image/`;
 
 export async function getCourseAnnouncements() {
   const supabase = getAnnouncementsSupabaseClient();
