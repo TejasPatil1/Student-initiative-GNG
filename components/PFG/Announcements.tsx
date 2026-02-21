@@ -59,9 +59,10 @@ export default function AnnouncementsPage() {
       const allowedTypes = [
         "application/pdf",
         "image/jpeg",
+        "image/jpg",
         "image/png",
         "image/webp",
-        "image/jpg",
+        "image/gif",
       ]
 
       if (!allowedTypes.includes(file.type)) {
@@ -73,7 +74,7 @@ export default function AnnouncementsPage() {
       const fileName = `${Date.now()}-${file.name}`
 
       const { error: uploadError } = await supabase.storage
-        .from("announcement-image")
+        .from("pdfs")
         .upload(fileName, file)
 
       if (uploadError) {
@@ -84,7 +85,7 @@ export default function AnnouncementsPage() {
       }
 
       const { data } = supabase.storage
-        .from("announcement-image")
+        .from("pdfs")
         .getPublicUrl(fileName)
 
       file_url = data.publicUrl
