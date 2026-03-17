@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Prevent crawling of Next.js internal paths
+Disallow: /_next/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://programmingforgenz.vercel.app/sitemap.xml

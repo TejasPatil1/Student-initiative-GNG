@@ -1,0 +1,57 @@
+==============================
+Error #1
+==============================
+
+Title:
+Next.js Turbopack Root Detection Issue
+
+Date:
+12-02-2026
+
+Project:
+PFG (Next.js 16)
+
+Problem:
+When running "npm run dev", the project failed with a Turbopack build error.
+
+Error Message:
+"We couldn't find the Next.js package (next/package.json) 
+from the project directory: C:\Users\Dipak\Desktop\PFG\app"
+
+Root Cause:
+There was another Next.js project folder (Student-initiative-GNG-) 
+inside the main project directory.
+
+Turbopack incorrectly inferred the workspace root as:
+C:\Users\Dipak\Desktop\PFG\app
+
+Instead of:
+C:\Users\Dipak\Desktop\PFG
+
+Because of this, Next.js could not locate next/package.json.
+
+Solution Steps:
+
+1) Removed the nested project folder:
+   (Moved "Student-initiative-GNG-" outside the main project directory)
+
+2) Deleted build cache folder:
+   rmdir /s /q .next
+
+3) Deleted dependencies folder:
+   rmdir /s /q node_modules
+
+4) Reinstalled dependencies:
+   npm install
+
+5) Started development server:
+   npm run dev
+
+Result:
+Project successfully started on localhost without errors.
+
+Key Learnings:
+- Keep only ONE Next.js project per root directory.
+- Avoid nested package.json files inside a Next.js project.
+- Turbopack strictly depends on correct workspace root detection.
+- Always verify project structure when facing build errors.
